@@ -25,53 +25,49 @@
 \pagenumbering{arabic}
 
 \chapter{Konzept}
-\section{Thema}
+In der heutigen Zeit werden kryptographische Verschlüsselungen in der Informatik immer wichtiger.
+Dies kommt von dem immer grösseren Verlangen nach Privatsphäre und Datenschutz in der digitalen Welt.
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
 angewandt auf Bilder implementiert in Matlab.
-Dabei untersuchen wir einerseits die Performance und ob man aus den Verschlüsselten
-Bilddaten irgendwelche Rückschlüsse ziehen kann.
 
-\section{Fragestellung}
+Hierbeis ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
+\begin{itemize}
+  \item Die synchrone Verschlüsselung
+  \item Die asynchrone Verschlüsselung
+\end{itemize}
+Bei der synchronen Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
+Bei der asynchronen hingegen gibt es zwei Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
+und einen privaten Schlüssel zum entschlüsseln.
+
+Es gibt verschiedene asymetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
+Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
+Im Rahmen dieser Arbeit konzentrieren wir uns bei der synchronen Verschlüsselung auf das \textit{One-Time-Pad} 
+und bei den asynchronen Verschlüsselungsverfahren auf RSA. 
+
+In dieser Arbeit untersuchen wir einerseits die Performance verschiedener Verschlüsslungsalgorithmen
+und ob man aus den verschlüsselten Bilddaten irgendwelche Rückschlüsse ziehen kann.
+Folgende Fragestellungen haben wir uns für diese Arbeit gestellt:
 \begin{itemize}
   \item Wie unterschiedlich ist ein verschlüsseltes Bild mit dem Ausgangsbild?
   \item Kann man einen populäres Bildformat wie JPEG oder PNG asynchron verschlüsseln, so dass
   das Bild immer noch korrekt interpretiert werden kann?
   \item Wie gut eignet sich Matlab für gängige Verschlüsselungsalgorithmen
 \end{itemize}
+Die Verschlüsselungen wenden wir auf JPEG Daten an.
 
 
 
-\section{Skizze der erwarteten Resultate}
+\section{Erwartete Resultate}
+Uns ist bewusst, dass wir mit Matlab für eine Asynchrone Verschlüsselung keine
+grossen Primzahlen nutzen können. Trotz relativ kleiner Primzahl, erwarten wir
+bei der Asynchronen Verschlüsselung im Vergleich zu der synchronen Ver- und Entschlüsselung
+grosse Performanceeinbussen.
 
+Wir erwarten, dass wir bei einem Bildformat wie JPEG nur Darstellungsrelevanten
+Daten ver- resp. entschlüsseln können.
+Nach der Verschlüsselung kann das Bild auf keine Weise 
+(ausser den nicht verschlüsselten Metadaten) mit dem Originalbild in Verbindung gebracht werden
 
-\section{Grundlagen}
-\section{Hilfsmittel externe Daten}
-\section{Mathematische Modellierung der Fragestellung}
-\section{Arbeits- und Zeitplan}
-
-
-
-% Wichtige Punkte:
-% \begin{itemize}
-%   \item Was will ich wissen?
-%   \begin{itemize} 
-%   	\item Problem schildern
-%   	\item Kurze Definitionen von spezifischen Begriffen 
-% 	\end{itemize}
-%   \item Was habe ich für Daten?
-%   	\begin{itemize}
-%   		\item 
-% 	\end{itemize}
-%   \item Welche Modelle brauche ich?
-%   	\begin{itemize}
-%   		\item Brauche ich Suchalgorithmen?
-% 		\item Tools (Toolbox bspw.Mathlab) 
-% 	\end{itemize}
-%   \item Was erwarte ich von den Resultaten
-% 	\begin{itemize}
-%   		\item 
-% 	\end{itemize}
-% \end{itemize}
 % 
 % Bestandteile des Konzepts
 % \begin{itemize}
