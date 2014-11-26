@@ -1,36 +1,15 @@
-
-\input{_layout/header}
-% \documentclass{article}
+\documentclass{article}
 
 \begin{document}
 
-% Römische Nummerierung für Sonderseiten, wie Verzeichnisse und Anhang
-\pagenumbering{Roman}
 
-% Titelblatt
-\input{_layout/titelseite}
-\newpage
-
-% Verzeichnisse
-% Kopfzeile links Kapitel, rechts leer
-\ihead{\leftmark}
-\ohead{}
-\input{_layout/verzeichnisse}
-
-% Merke mir die römische Seitenzahl in 'roemisch' und setzte Nummeriernung 
-% auf arabisch für die eigentlichen Kapitel
-\newpage
-\newcounter{roemisch}
-\setcounter{roemisch}{\value{page}}
-\pagenumbering{arabic}
-
-\chapter{Konzept}
+\section{Konzept}
 In der heutigen Zeit werden kryptographische Verschlüsselungen in der Informatik immer wichtiger.
 Dies kommt von dem immer grösseren Verlangen nach Privatsphäre und Datenschutz in der digitalen Welt.
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
 angewandt auf Bilder implementiert in Matlab.
 
-Hierbeis ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
+Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
   \item Die synchrone Verschlüsselung
   \item Die asynchrone Verschlüsselung
@@ -67,42 +46,6 @@ Wir erwarten, dass wir bei einem Bildformat wie JPEG nur Darstellungsrelevanten
 Daten ver- resp. entschlüsseln können.
 Nach der Verschlüsselung kann das Bild auf keine Weise 
 (ausser den nicht verschlüsselten Metadaten) mit dem Originalbild in Verbindung gebracht werden
-
-% 
-% Bestandteile des Konzepts
-% \begin{itemize}
-%   \item Grundlagen
-%   \item Methoden
-%   	\begin{itemize}
-%   		\item Mathematische Methoden
-% 	\end{itemize}
-%   \item Vorgehen (Zeitplan, Meilensteine)
-%   \item Darstellung der Resultate
-% 	\begin{itemize}
-% 	  \item Bilder, die etwas aussagen.
-% 	\end{itemize}
-%   \item Geschichte
-% \end{itemize}
-
-
-
-
-
-% Setze Numerierung wieder auf römisch zurück und setzte von oben fort
-% Wert ist demnach der von 'roemisch'
-\newpage
-\pagenumbering{Roman}
-\setcounter{page}{\value{roemisch}}
-
-% Literaturverzeichnis
-\bibliography{literatur/bib}
-
-% Appendix, falls vorhanden
-\appendix
-\input{_layout/anhang}
-
-% Eidesstattliche Erklärung
-\input{_layout/eidesstattliche}
 
 
 \end{document}
