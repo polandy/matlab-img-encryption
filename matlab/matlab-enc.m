@@ -1,7 +1,7 @@
 % Declare image to load
-A = imread('C:\Users\berm\Pictures\tux.jpg','jpg');
+% A = imread('Tux.jpg','jpg');
 % read in tiff image and convert it to double format
-my_image = im2double(imread('C:\Users\berm\Pictures\tux.jpg','jpg'));
+my_image = im2double(imread('Tux.jpg','jpg'));
 my_image = my_image(:,:,1);
 
 % perform thresholding by logical indexing
