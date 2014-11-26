@@ -1,14 +1,29 @@
-\documentclass{article}
+\documentclass[paper=a4,fontsize=12pt]{scrartcl}
+\usepackage{geometry}
+\geometry{verbose, a4paper, tmargin=25mm, bmargin=25mm, lmargin=25mm, rmargin=25mm}
 
+\usepackage[latin1]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{fancyhdr} %Paket laden
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+
+
+\fancyhead[L]{\includegraphics[width=1cm]{img/logo_bfh_de.jpg}} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{Marco Berger, Andy Pollari} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[C]{\thepage} %Seitennummer
+\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
+ 
 \begin{document}
-
-
-\section{Konzept}
+\section*{Bildverschlüsselung mit Matlab}
+\subsection*{Konzept}
 In der heutigen Zeit werden kryptographische Verschlüsselungen in der Informatik immer wichtiger.
 Dies kommt von dem immer grösseren Verlangen nach Privatsphäre und Datenschutz in der digitalen Welt.
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
-angewandt auf Bilder implementiert in Matlab.
-
+angewandt auf Bilder implementiert in Matlab. \\
 Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
   \item Die synchrone Verschlüsselung
@@ -16,14 +31,12 @@ Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverf
 \end{itemize}
 Bei der synchronen Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
 Bei der asynchronen hingegen gibt es zwei Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
-und einen privaten Schlüssel zum entschlüsseln.  
-
+und einen privaten Schlüssel zum entschlüsseln. \\ \\
 Es gibt verschiedene asymetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
 Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
 Im Rahmen dieser Arbeit konzentrieren wir uns bei der synchronen Verschlüsselung auf das \textit{One-Time-Pad} 
-und bei den asynchronen Verschlüsselungsverfahren auf RSA. 
-
-In dieser Arbeit untersuchen wir einerseits die Performance verschiedener Verschlüsslungsalgorithmen
+und bei den asynchronen Verschlüsselungsverfahren auf RSA. \\ \\
+In dieser Arbeit untersuchen wir einerseits die Performance verschiedener \\Verschlüsslungsalgorithmen
 und ob man aus den verschlüsselten Bilddaten irgendwelche Rückschlüsse ziehen kann.
 Folgende Fragestellungen haben wir uns für diese Arbeit gestellt:
 \begin{itemize}
@@ -36,12 +49,11 @@ Die Verschlüsselungen wenden wir auf JPEG Daten an.
 
  
 
-\section{Erwartete Resultate}
+\section*{Erwartete Resultate}
 Uns ist bewusst, dass wir mit Matlab für eine Asynchrone Verschlüsselung keine
 grossen Primzahlen nutzen können. Trotz relativ kleiner Primzahl, erwarten wir
 bei der Asynchronen Verschlüsselung im Vergleich zu der synchronen Ver- und Entschlüsselung
-grosse Performanceeinbussen.
-
+grosse Performanceeinbussen. \\
 Wir erwarten, dass wir bei einem Bildformat wie JPEG nur Darstellungsrelevanten
 Daten ver- resp. entschlüsseln können.
 Nach der Verschlüsselung kann das Bild auf keine Weise 
