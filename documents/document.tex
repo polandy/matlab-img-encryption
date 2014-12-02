@@ -9,9 +9,8 @@
 \pagestyle{fancy} %eigener Seitenstil
 \fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
 
-
-\fancyhead[L]{\includegraphics[width=1cm]{img/logo_bfh_de.jpg}} %Kopfzeile links
-\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[L]{Bildverschlüsselung mit Matlab} 
+\fancyhead[C]{Konzept} %zentrierte Kopfzeile
 \fancyhead[R]{Marco Berger, Andy Pollari} %Kopfzeile rechts
 \renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
 \fancyfoot[C]{\thepage} %Seitennummer
@@ -27,7 +26,7 @@ angewandt auf Bilder implementiert in Matlab. \\
 Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
   \item Die synchrone Verschlüsselung
-  \item Die asynchrone Verschlüsselung
+  \item Die asynchrone Verschlüsselung 
 \end{itemize}
 Bei der synchronen Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
 Bei der asynchronen hingegen gibt es zwei Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
@@ -47,8 +46,6 @@ Folgende Fragestellungen haben wir uns für diese Arbeit gestellt:
 \end{itemize}
 Die Verschlüsselungen wenden wir auf JPEG Daten an.
 
- 
-
 \section*{Erwartete Resultate}
 Uns ist bewusst, dass wir mit Matlab für eine asynchrone Verschlüsselung keine
 grossen Primzahlen nutzen können. Trotz relativ kleiner Primzahl, erwarten wir
@@ -59,5 +56,18 @@ Daten ver- resp. entschlüsseln können.
 Nach der Verschlüsselung kann das Bild auf keine Weise 
 (ausser den nicht verschlüsselten Metadaten) mit dem Originalbild in Verbindung gebracht werden
 
+
+\section*{Zeitplan}
+\begin{tabular}{rl}
+	03.12.2014	&	Abschluss und Abnahme des Konzepts durch M. Stampfli \\
+	17.12.2014	&	Erfolgreiches Einlesen eines Bildes mit Datenmanipulation \\
+	24.12.2014	&	Synchrone und Asynchrone Verschlüsselung angewandt auf Bilder \\
+	07.01.2014	&	Abschluss der Implementierungen.  \\
+				&	Festhalten der Ergebnisse  \\
+	16.01.2014	&	Dokumentation fertiggestellt.  \\
+				&	Abgabe der Arbeit  \\
+				&	Präsentation  \\
+	
+\end{tabular}
 
 \end{document}
