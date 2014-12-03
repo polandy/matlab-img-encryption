@@ -1,19 +1,19 @@
 % Declare image to load
-% A = imread('Tux.jpg','jpg');
-% read in tiff image and convert it to double format
+% read in tiff image
 my_image = imread('ff.bmp','bmp');
-%my_image = im2double(imread('ff.bmp','bmp'));
-% my_image = my_image(:,:,1);
 
 % generate random matrix
 randomMatrix = randi([0,255], 84, 220, 3);
 randomMatrix = uint8(randomMatrix);
 
-% perform thresholding by logical indexing
-image_thresholded = my_image;
-image_thresholded = encData(my_image, randomMatrix);
+% encrypt image
+image_encrypted = my_image;
+image_encrypted = encData(my_image, randomMatrix);
+
+% decrypt image (same as encrypt image)
 image_decrypted = encData(image_thresholded, randomMatrix);
 
+% plot images
 figure()
 subplot(1,3,1)
 imshow(my_image,[])
