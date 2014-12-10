@@ -4,7 +4,11 @@ n = p * q;
 t = (p-1) * (q-1);
 
 % generate a public key e
-e = randseed; % todo: make sure t is not divisible by 't'
+e_ = randseed; % todo: make sure t is not divisible by 't'
+while gcd(e_, t) ~= 1
+    e_ = randseed;
+end
+% OK, RSA gcd(e_, t) = 0
 
 % now find the private key 'd': d * e [=] 1 mod t
 d = multiplicative_inverse(e,n);
