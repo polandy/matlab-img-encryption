@@ -9,11 +9,8 @@ randomMatrix = uint8(randomMatrix);
 % encrypt image
 image_encrypted = my_image;
 image_encrypted = encData(my_image, randomMatrix);
+image_decrypted = encData(image_encrypted, randomMatrix);
 
-% decrypt image (same as encrypt image)
-image_decrypted = encData(image_thresholded, randomMatrix);
-
-% plot images
 figure()
 subplot(1,3,1)
 imshow(my_image,[])
