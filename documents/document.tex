@@ -25,31 +25,31 @@ In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselun
 angewandt auf Bilder implementiert in Matlab. \\
 Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
-  \item Die synchrone Verschlüsselung
-  \item Die asynchrone Verschlüsselung 
+  \item Die symmetrische Verschlüsselung
+  \item Die asymmetrische Verschlüsselung 
 \end{itemize}
-Bei der synchronen Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
-Bei der asynchronen hingegen gibt es zwei Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
+Bei der symmetrisch Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
+Bei der asymmetrisch hingegen gibt es zwei Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
 und einen privaten Schlüssel zum entschlüsseln. \\ \\
 Es gibt verschiedene asymetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
 Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
-Im Rahmen dieser Arbeit konzentrieren wir uns bei der synchronen Verschlüsselung auf das \textit{One-Time-Pad} 
-und bei den asynchronen Verschlüsselungsverfahren auf RSA. \\ \\
+Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrische Verschlüsselung auf das \textit{One-Time-Pad} 
+und bei den asymmetrisch Verschlüsselungsverfahren auf RSA. \\ \\
 In dieser Arbeit untersuchen wir einerseits die Performance verschiedener \\Verschlüsslungsalgorithmen
 und ob man aus den verschlüsselten Bilddaten irgendwelche Rückschlüsse ziehen kann.
 Folgende Fragestellungen haben wir uns für diese Arbeit gestellt:
 \begin{itemize}
   \item Wie unterschiedlich ist ein verschlüsseltes Bild mit dem Ausgangsbild?
-  \item Kann man einen populäres Bildformat wie JPEG oder PNG asynchron verschlüsseln, so dass
+  \item Kann man einen populäres Bildformat wie JPEG oder PNG asymetrische verschlüsseln, so dass
   das Bild immer noch korrekt interpretiert werden kann?
   \item Wie gut eignet sich Matlab für gängige Verschlüsselungsalgorithmen
 \end{itemize}
 Die Verschlüsselungen wenden wir auf JPEG Daten an.
 
 \section*{Erwartete Resultate}
-Uns ist bewusst, dass wir mit Matlab für eine asynchrone Verschlüsselung keine
+Uns ist bewusst, dass wir mit Matlab für eine asymmetrisch Verschlüsselung keine
 grossen Primzahlen nutzen können. Trotz relativ kleiner Primzahl, erwarten wir
-bei der Asynchronen Verschlüsselung im Vergleich zu der synchronen Ver- und Entschlüsselung
+bei der asymmetrischen Verschlüsselung im Vergleich zu der symmetrischen Ver- und Entschlüsselung
 grosse Performanceeinbussen. \\
 Wir erwarten, dass wir bei einem Bildformat wie JPEG nur Darstellungsrelevanten
 Daten ver- resp. entschlüsseln können.
@@ -61,7 +61,7 @@ Nach der Verschlüsselung kann das Bild auf keine Weise
 \begin{tabular}{rl}
 	03.12.2014	&	Abschluss und Abnahme des Konzepts durch M. Stampfli \\
 	17.12.2014	&	Erfolgreiches Einlesen eines Bildes mit Datenmanipulation \\
-	24.12.2014	&	Synchrone und Asynchrone Verschlüsselung angewandt auf Bilder \\
+	24.12.2014	&	Symmetrische und Asymmetrische Verschlüsselung angewandt auf Bilder \\
 	07.01.2015	&	Abschluss der Implementierungen.  \\
 				&	Festhalten der Ergebnisse  \\
 	16.01.2015	&	Dokumentation fertiggestellt.  \\
