@@ -1,0 +1,4 @@
+function retval = encDataRSA(ColorVal, e, n)
+    encrypted = modColorVal ^e;
+    retval = im2uint8(encrypted);
+end
