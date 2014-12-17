@@ -1,6 +1,6 @@
 % Declare image to load
 % read in tiff image
-runtime = tic;
+total_runtime = tic;
 my_image = imread('ff.bmp','bmp');
 
 
@@ -15,7 +15,7 @@ image_encrypted = encData(my_image, randomMatrix);
 enc_time = toc(enc_time)
 image_decrypted = encData(image_encrypted, randomMatrix);
 
-runtime = toc(t1_encryption_syn)
+total_runtime = toc(total_runtime)
 
 figure()
 subplot(1,3,1)
@@ -23,8 +23,8 @@ imshow(my_image,[])
 title('original image')
 subplot(1,3,2)
 
-imshow(image_thresholded,[])
-title('thresholded image')
+imshow(image_encrypted,[])
+title('encrypted image')
 subplot(1,3,3)
 
 imshow(image_decrypted,[])
