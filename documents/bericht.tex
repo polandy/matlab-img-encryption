@@ -6,6 +6,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
+
+\usepackage{amsmath}
+
 % Grafiken einbinden 
 \usepackage{graphicx}
 \usepackage{here} % http://overspice.blogspot.ch/2007/10/latex-bilder-richtig-plazieren.html
@@ -24,19 +27,20 @@
 \let\ps@plain\ps@fancy 
 \makeatother
 
+
+
 \begin{document}
 \title{Bildverschlüsselung mit Matlab}
 \author{Marco Berger, Andy Pollari}
 \date{14.01.2015}
 \maketitle
 
-\newpage
 \section{Einleitung}
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
 angewandt auf Bilder implementiert in Matlab. \\
 Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
-  \item Die symmetrische Verschlüsselung
+  \item Die symmetrische Verschlüsselung 
   \item Die asymmetrische Verschlüsselung 
 \end{itemize}
 Bei der symmetrisch Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
@@ -63,14 +67,14 @@ Daher beschränken wir uns auschliesslicht auf diese beiden Verfahren.
 Beim One-Time-Pad haben wir einen Keystream der aus random Bits besteht.
 Dieser Keystream muss mindestens so viele Bits lang sein, wie die zu verschlüsselnde Nachricht selbst.
 In unserem Projekt ist die zu verschlüsselnde Nachricht ein JPG-Bild. \\
-Die Idee beim One-Time-Pad ist, dass der Keystream nur einmal zum ver- resp. entschlüsseln verwendet wird. \\ \\
+Die Idee beim One-Time-Pad ist, dass der Keystream nur einmal zum ver- respektive entschlüsseln verwendet wird. \\ \\
 Die Verschlüsselung beim One-Time-Pad wird realisiert, 
 indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystreams $r$ XOR verknüpft wird.
-\begin{itemize}
-  \item Plaintext: $m = m_1 || m_2 || \cdots || m_k$
-  \item Ciphertext: $c = c_1 || c_2 | \cdots || c_k$
-  \item Keystream: $r = r_1 || r_2 | \cdots || r_k$
-\end{itemize}
+% \begin{itemize}
+%   \item Plaintext: $m = m_1 || m_2 || \cdots || m_k$
+%   \item Ciphertext: $c = c_1 || c_2 | \cdots || c_k$
+%   \item Keystream: $r = r_1 || r_2 | \cdots || r_k$
+% \end{itemize}
 
 \begin{figure}[H] 
 	\centering
@@ -86,15 +90,67 @@ indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystre
 \end{figure}
 
 
-\subsection{Rivest, Shamir und Adleman (RSA)}
+\subsection{Rivest, Shamir und Adleman (RSA)} \label{RSA-intro}
+RSA ist ein asymmetrisches kryptographisches Verfahren. Es wird zur Verschlüsselung aber auch zur digitalen Signatur verwendet.
+In dieser Arbeit befassen wir uns ausschliesslich mit dem Verschlüsselungsverfahren von RSA.
+\\ \\
+RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (private key) und einem öffentlichen Schlüssel  (public key).
+Den private key verwendet man dabei um Daten zu entschlüsseln, die mit dem public key verschlüsselt worden sind. 
+
+\subsubsection{Schlüssel Generierung}
+Der public key ist ein Zahlenpaar $(e,N)$, und der private key ist auch ein Zahlenpaar $(d,N)$.
+$e$ des public keys wird auch den Verschlüsselungsexponenten genannt.
+$d$ des private keys wird auch den Entschlüsselungsexponenten genannt. 
+Bei beiden Zahlenpaaren ist N gleich und wird \textit{RSA Modul} genannt.
+Eine kurze grobe Beschreibung, wie die oben genannten Schlüssel generiert werden:
+\begin{itemize}
+  \item Die Primzahlen $p$ und $q$ zufällig wählen, $p \neq q$
+  \item Den RSA-Modul $N$ berechnen \begin{align} N = p \cdot q \end{align}
+  \item $\varphi(N)$ berechnen \begin{align} \varphi(N) = (p-1) \cdot (q-1)\end{align}
+  \item $e$ wählen, welches teilerfremd von $\varphi(N)$ ist
+  \item $d$ wählen, wobei gilt \begin{align} e \cdot d \equiv_N mod \varphi(N)\end{align} $d$ ist also das multiplikativ Inverse Element von $e$ im Bezug auf $\varphi(N)$
+\end{itemize}
+
+\subsubsection{Verschlüsselung / Entschlüsselung}
+Möchten wir eine Nachricht $m$ verschlüsseln, so wird die Nachricht $m$ mit dem Verschlüsselungsexponenten $e$ potenziert.
+Man erhält so den Ciphertext $c$ (Geheimtext).
+\begin{align}
+	c \equiv_N m^e
+\end{align}
+
+Um den Ciphertext $c$ zu entschlüsseln, muss $c$ mit dem Entschlüsselungsexponenten $d$ potenziert werden.
+So erhalten wir wieder die Ursprungsnachricht $m$.
+\begin{align}
+	m \equiv_N c^d
+\end{align}
 
 
 
 \newpage
 \section{Vorgehen, Methoden Analysen}
+Da wir die Grundlagen der zu verwendenden Verschlüsselungen bereits durch unsere Studium-Vertiefung IT-Security hatten,
+konnten wir uns schnell der Implementierung widmen.
+
+\subsection{Implementierung der symmetrischen Verschlüsselung}
+Wie bereits erwähnt haben wir uns für eine One Time Pad Verschlüsselung entschieden.
+Dabei wird ein Bild in eine Matrix $M_M$ gelesen. 
+Für das One Time Pad erstellen darauf hin eine Matrix $M_R$ mit Zufallswerten und exakt der grösse, des eingelesenen Bildes.
+Die beiden Matrizen werden XOR miteinander verknüpft, was eine neue Matrix $M_C$ ergibt. $M_C$ ist das verschlüsselte Bild.
+Nachträglich haben wir die Zeitmessung eingebaut, um Auswertungen machen zu können.
+% TODO Auswertung mit Excel?
+
+\subsection{Implementierung der asymmetrischen Verschlüsselung}
+Bei der asymmetrischen Verschlüsselung haben wir uns für die RSA Verschlüsselung entschieden.
+Die Implementiertung erfolgte erst ziemlich genau so, wie im Grundlagen Kapitel \ref{RSA-intro} beschrieben:
+Erst die Schlüsselgenerierung und anschliessend wurde jeder Wert des Bildes mit den Bilder ver- und entschlüsselt.
+Bei der RSA Implementierung stiessen wir auf einige Probleme, die wir im Kapitel \ref{problems-RSA} erläutern.
+Nach der vollständigen Implementierung der Ver- resp. Entschlüsselung, wurden auch hier noch Zeitmessungen eingebaut, um Auswertungen
+machen zu können.
 
 \newpage
 \section{Ergebnisse, Resultate} \label{results} 
+ 
+ \subsection{Probleme} \label{problems-RSA}
  Probleme Notiz
  \begin{itemize}
   \item wenn jedes Pixel mit dem gleichen Exponenten e gerechnet wird, so wird das Bild nicht wirklich verschlüsselt.
