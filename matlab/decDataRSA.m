@@ -1,4 +1,7 @@
-function retval = encryptDataWithRSA(ColorVal, randomVal)
-    encrypted = bitxor(ColorVal, randomVal);
-    retval = im2uint8(encrypted);
+function retval = decDataRSA(ColorVal, d,n)
+    message=1;
+    for k=1:d
+        message=mod(message.*ColorVal,n);
+    end
+    retval =uint8(message);
 end
