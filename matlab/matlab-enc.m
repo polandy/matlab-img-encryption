@@ -2,10 +2,14 @@
 % read in tiff image
 total_runtime = tic;
 my_image = imread('ff.bmp','bmp');
-
+my_image_size = size(my_image)
+y = my_image_size(1)
+x = my_image_size(2)
+z = my_image_size(3)
 
 % generate random matrix
-randomMatrix = randi([0,255], 84, 220, 3);
+% randomMatrix = randi([0,255], 84, 220, 3);
+randomMatrix = randi([0,255], y, x, z);
 randomMatrix = uint8(randomMatrix);
 
 % encrypt image
@@ -24,8 +28,8 @@ title('original image')
 subplot(1,3,2)
 
 imshow(image_encrypted,[])
-title('encrypted image')
+title('Encrypted image')
 subplot(1,3,3)
 
 imshow(image_decrypted,[])
-title('Derypted Image')
+title('Decrypted Image')

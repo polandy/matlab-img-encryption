@@ -86,7 +86,7 @@ indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystre
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=7cm]{img/one-time-pad_dec.jpg}}
 	\caption[One Time Pad Decryption]{One-Time-Pad Decryption}  
-	\label{One-Time-Pad Entschlüsselung} 
+	\label{One-Time-Pad-enc} 
 \end{figure}
 
 
@@ -124,7 +124,7 @@ So erhalten wir wieder die Ursprungsnachricht $m$.
 	m \equiv_N c^d
 \end{align}
 
-
+ 
 
 \newpage
 \section{Vorgehen, Methoden Analysen}
@@ -149,8 +149,11 @@ machen zu können.
 
 \newpage
 \section{Ergebnisse, Resultate} \label{results} 
+\subsection{Performance}
+
+\subsection{Wiedererkannbarkeit des verschlüsselten Bildes}
  
- \subsection{Probleme} \label{problems-RSA}
+ \subsection{Eignet sich nun Matlab für Bildverschlüsselung?} \label{problems-RSA}
  Probleme Notiz
  \begin{itemize}
   \item wenn jedes Pixel mit dem gleichen Exponenten e gerechnet wird, so wird das Bild nicht wirklich verschlüsselt.
