@@ -28,12 +28,49 @@
 \makeatother
 
 
+\usepackage{pgfplots}
+\usepackage{filecontents}
+
+\begin{filecontents*}{data.csv}
+imgNames,width,height,megapixel,time
+large-1.jpg,5184,3456,17.915904,0.0226542369937176
+large-10.jpg,5184,3456,17.915904,0.02146350620254
+large-2.jpg,5074,3383,17.165342,0.0214863869118607
+large-4.jpg,5184,3456,17.915904,0.0218580817000087
+large-5.jpg,5184,3456,17.915904,0.0217852369927837
+large-6.jpg,5184,3456,17.915904,0.0220588715981288
+large-7.jpg,11029,4695,51.781155,0.0621215927588625
+large-8.jpg,5530,4142,22.90526,0.0278047313571249
+large-9.jpg,3456,5184,17.915904,0.0213010064710382
+medium-1.jpg,3000,2000,6,0.00726112305992598
+medium-10.jpg,3000,2000,6,0.00749226491938986
+medium-2.jpg,3000,2000,6,0.00722563461281637
+medium-3.jpg,4085,2000,8.17,0.0102907157552829
+medium-4.jpg,3000,2000,6,0.00744230092148555
+medium-5.jpg,3000,2000,6,0.00724011016361108
+medium-6.jpg,3000,2000,6,0.00741755239915911
+medium-7.jpg,4698,2000,9.396,0.0112199527256528
+medium-8.jpg,2670,2000,5.34,0.00675494573536265
+medium-9.jpg,1333,2000,2.666,0.0035222283756284
+small-1.jpg,1536,1024,1.572864,0.00216059269442299
+small-10.jpg,1536,1024,1.572864,0.00209195056646099
+small-2.jpg,1536,1024,1.572864,0.00207794196891772
+small-3.jpg,2091,1024,2.141184,0.00275035465099447
+small-4.jpg,1536,1024,1.572864,0.00213724503185088
+small-5.jpg,1536,1024,1.572864,0.00212697206031915
+small-6.jpg,1536,1024,1.572864,0.00201490327997303
+small-7.jpg,2405,1024,2.46272,0.00306788286197516
+small-8.jpg,1367,1024,1.399808,0.00195560021703987
+small-9.jpg,683,1024,0.699392,0.00102636324666992
+
+\end{filecontents*}
+
 
 \begin{document}
 \title{Bildverschlüsselung mit Matlab}
 \author{Marco Berger, Andy Pollari}
 \date{14.01.2015}
-\maketitle
+\maketitle 
 
 \section{Einleitung}
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
@@ -134,10 +171,10 @@ konnten wir uns schnell der Implementierung widmen.
 \subsection{Implementierung der symmetrischen Verschlüsselung}
 Wie bereits erwähnt haben wir uns für eine One Time Pad Verschlüsselung entschieden.
 Dabei wird ein Bild in eine Matrix $M_M$ gelesen. 
-Für das One Time Pad erstellen darauf hin eine Matrix $M_R$ mit Zufallswerten und exakt der grösse, des eingelesenen Bildes.
-Die beiden Matrizen werden XOR miteinander verknüpft, was eine neue Matrix $M_C$ ergibt. $M_C$ ist das verschlüsselte Bild.
+Für das One Time Pad erstellen darauf hin eine Matrix $M_R$ mit Zufallswerten und exakt der Grösse, des eingelesenen Bildes.
+Die beiden Matrizen werden XOR miteinander verknüpft, was eine neue Matrix $M_C$ ergibt und dem verschlüsselten Bild entspricht.
 Nachträglich haben wir die Zeitmessung eingebaut, um Auswertungen machen zu können.
-% TODO Auswertung mit Excel?
+
 
 \subsection{Implementierung der asymmetrischen Verschlüsselung}
 Bei der asymmetrischen Verschlüsselung haben wir uns für die RSA Verschlüsselung entschieden.
@@ -149,9 +186,38 @@ machen zu können.
 
 \newpage
 \section{Ergebnisse, Resultate} \label{results} 
-\subsection{Performance}
 
-\subsection{Wiedererkannbarkeit des verschlüsselten Bildes}
+\subsection{Symmetrische Verschlüsselung}
+\subsubsection{Performance bei der symmetrischen Verschlüsselung}
+\begin{tikzpicture}
+\begin{axis}[width=\textwidth, height=0.6\textwidth,
+		title={Performance - Symmetrische Verschlüsselung},
+		ylabel={Megapixel},
+		xlabel={Sekunden}
+		]
+\addplot table [x=time, y=megapixel, col sep=comma] {data.csv};
+\end{axis}
+\end{tikzpicture} \\
+Unserer Meinung ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
+Die obere Grafik zeigt, dass die Verschlüsselungsdauer linear zur Anzahl Bildpunkten ist.
+Um ein Bild vom 50 Megapixel zu Verschlüsseln braucht unser Matlab Programm 0.06s.
+Die Verschlüsselungsdauer ist mit der Entschlüsselungsdauer identisch, da die gleichen Operationen (XOR) durchgeführt werden.
+Bezüglich der Performance eignet sich Matlab unserer Meinung sehr gut für eine symmetrische Verschlüsselung mit dem One-Time-Pad.
+
+\subsubsection{Wiedererkennbarkeit des Bildes}
+Mehrere Versuche zeigten, dass das Originalbild nach der Verschlüsselung in keiner Weise wiedererkennbar ist.
+Auch in diesem Punkt, überzeugt die symmetrische Verschlüsselung mit dem One-Time-Pad.
+Die Abbildung \ref{sym-enc-result} zeigt ein Beispiel des Resultates.
+\begin{figure}[H] 
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\textwidth]{img/sym-enc-result.jpg}}
+	\caption[One Time Pad - Ver- und Entschlüsselung]{One Time Pad - Ver- und Entschlüsselung}  
+	\label{sym-enc-result} 
+\end{figure}
+
+\subsection{Asymmetrische Verschlüsselung}
+\subsubsection{Performance bei der asymmetrischen Verschlüsselung}
+\subsubsection{Wiedererkennbarkeit des Bildes}
  
  \subsection{Eignet sich nun Matlab für Bildverschlüsselung?} \label{problems-RSA}
  Probleme Notiz
