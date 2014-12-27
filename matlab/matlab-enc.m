@@ -1,7 +1,7 @@
 % Declare image to load
 
-files = dir('images/large-2.jpg');
-% files = dir('images/*.jpg');
+% files = dir('images/large-2.jpg');
+files = dir('images/*.jpg');
 
 % initialize matrixes for report
 time = [];
