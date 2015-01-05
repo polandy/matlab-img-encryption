@@ -1,51 +1,49 @@
-p = randseed;
-q = randseed;
-n = p * q;
+% generate a p and q which are not the same and where the result of the
+% multiplication is bigger or equal to 255
+n=0;
+while((n < 255) || (p == q))
+    p = randseed(randi(1000),1,1,1,25);
+    q = randseed(randi(1000),1,1,1,25);
+    n = p * q;
+end
+
+% calculate the totient
 t = (p-1) * (q-1);
 
-% generate a public key e
-e_ = randseed; % todo: make sure t is not divisible by 't'
-while gcd(e_, t) ~= 1
-    e_ = randseed;
+% generate a public key e_ which is divisor-TODO with 't'
+e_ = randseed(randi(1000),1,1,1,t);
+while(gcd(e_, t) ~= 1)
+    e_ = randseed(randi(1000),1,1,1,t);
 end
-% OK, RSA gcd(e_, t) = 0
-
-% now find the private key 'd': d * e [=] 1 mod t
-d = multiplicative_inverse(e,n);
-
-%simple enc and dec. test:
-message = 3;
-mod(message^10,n)
-cipher = mod(message^e,n);
-
-test = mod(3,2);
-message = cipher^d;
+% calculate the multiplicative inverse of e_, so that d * e [=] 1 mod t
+% which results in the private key 'd'
+d = multiplicative_inverse(e_,t);
 
 % Declare image to load
-% read in tiff image 
-my_image = imread('ff.bmp','bmp');
+% read in jpg image 
+clean_image = imread('island.jpg','jpg');
 
 % generate random matrix
 randomMatrix = randi([0,255], 84, 220, 3);
 randomMatrix = uint8(randomMatrix);
 
-% encrypt image
-image_encrypted = my_image;
-image_encrypted = encData(my_image, randomMatrix);
+% encrypt image with RSA
+image_encrypted = clean_image;
+image_encrypted = encDataRSA(clean_image, e_, n);
 
-% decrypt image (same as encrypt image)
-image_decrypted = encData(image_encrypted, randomMatrix);
+% decrypt image with RSA
+image_decrypted = decDataRSA(image_encrypted, d,n);
 
 % plot images
-%figure()
-%subplot(1,3,1)
-%imshow(my_image,[])
-title('original image')
-subplot(1,3,2)
+figure()
+subplot(1,3,1);
+imshow(clean_image,[])
+title('Originial')
 
-%imshow(image_encrypted,[])
-title('thresholded image')
-subplot(1,3,3)
+subplot(1,3,2);
+imshow(image_encrypted,[])
+title('Verschlüsselt mit RSA (asymmetrisch)')
 
-%imshow(image_decrypted,[])
-title('Derypted Image')
+subplot(1,3,3);
+imshow(image_decrypted,[])
+title('Entschlüsselt')
