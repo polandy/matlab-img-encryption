@@ -6,8 +6,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
-
 \usepackage{amsmath}
+
+\usepackage{listings}
 
 % Grafiken einbinden 
 \usepackage{graphicx}
@@ -62,7 +63,40 @@ small-6.jpg,1536,1024,1.572864,0.00201490327997303
 small-7.jpg,2405,1024,2.46272,0.00306788286197516
 small-8.jpg,1367,1024,1.399808,0.00195560021703987
 small-9.jpg,683,1024,0.699392,0.00102636324666992
+\end{filecontents*}
 
+\begin{filecontents*}{performance-asymmetric-enc.csv}
+imgName,width,height,megapixel,time
+a.jpg,1536,1024,1.572864,0.750267797689702
+large-1.jpg,5184,3456,17.915904,48.3300696414079
+large-10.jpg,5184,3456,17.915904,115.412466811298
+large-2.jpg,5074,3383,17.165342,79.4360124620484
+large-4.jpg,5184,3456,17.915904,205.940519027878
+large-5.jpg,5184,3456,17.915904,189.149459128049
+large-6.jpg,5184,3456,17.915904,18.6510654472338
+large-7.jpg,11029,4695,51.781155,28.0440322907512
+large-8.jpg,5530,4142,22.90526,80.6949688588877
+large-9.jpg,3456,5184,17.915904,76.0953233697962
+medium-1.jpg,3000,2000,6,54.9303422487161
+medium-10.jpg,3000,2000,6,47.02039465021
+medium-2.jpg,3000,2000,6,59.1426434783908
+medium-3.jpg,4085,2000,8.17,3.81727045278589
+medium-4.jpg,3000,2000,6,38.8183215645549
+medium-5.jpg,3000,2000,6,34.1271336261442
+medium-6.jpg,3000,2000,6,26.0031729473436
+medium-7.jpg,4698,2000,9.396,36.4283156716049
+medium-8.jpg,2670,2000,5.34,19.6319595879978
+medium-9.jpg,1333,2000,2.666,29.3038758987683
+small-1.jpg,1536,1024,1.572864,2.50203404836328
+small-10.jpg,1536,1024,1.572864,13.2850189256153
+small-2.jpg,1536,1024,1.572864,0.3256433915375
+small-3.jpg,2091,1024,2.141184,22.4676966410185
+small-4.jpg,1536,1024,1.572864,12.8615002647625
+small-5.jpg,1536,1024,1.572864,5.75673603412868
+small-6.jpg,1536,1024,1.572864,11.8026622872678
+small-7.jpg,2405,1024,2.46272,23.761862246923
+small-8.jpg,1367,1024,1.399808,13.0273279720874
+small-9.jpg,683,1024,0.699392,1.24491044303591
 \end{filecontents*}
 
 
@@ -199,8 +233,8 @@ machen zu können.
 \end{axis}
 \end{tikzpicture} \\
 Unserer Meinung ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
-Die obere Grafik zeigt, dass die Verschlüsselungsdauer linear zur Anzahl Bildpunkten ist.
-Um ein Bild vom 50 Megapixel zu Verschlüsseln braucht unser Matlab Programm 0.06s.
+Die obere Grafik zeigt, dass die Verschlüsselungsdauer wie erwartet linear zur Anzahl Bildpunkten ist.
+Um ein Bild von 50 Megapixel zu Verschlüsseln braucht unser Matlab Programm 0.06s.
 Die Verschlüsselungsdauer ist mit der Entschlüsselungsdauer identisch, da die gleichen Operationen (XOR) durchgeführt werden.
 Bezüglich der Performance eignet sich Matlab unserer Meinung sehr gut für eine symmetrische Verschlüsselung mit dem One-Time-Pad.
 
@@ -211,22 +245,105 @@ Die Abbildung \ref{sym-enc-result} zeigt ein Beispiel des Resultates.
 \begin{figure}[H] 
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=\textwidth]{img/sym-enc-result.jpg}}
-	\caption[One Time Pad - Ver- und Entschlüsselung]{One Time Pad - Ver- und Entschlüsselung}  
+	\caption[One Time Pad - Verschlüsselung]{One Time Pad - Verschlüsselung}  
 	\label{sym-enc-result} 
 \end{figure}
 
 \subsection{Asymmetrische Verschlüsselung}
 \subsubsection{Performance bei der asymmetrischen Verschlüsselung}
+\begin{tikzpicture}
+\begin{axis}[width=\textwidth, height=0.6\textwidth,
+		title={Performance - Symmetrische Verschlüsselung},
+		ylabel={Megapixel},
+		xlabel={Sekunden}
+		]
+\addplot table [x=time, y=megapixel, col sep=comma] {performance-asymmetric-enc.csv};
+\end{axis}
+\end{tikzpicture} \\
+Bei der asymmetrischen Verschlüsselung lässt die Performance zu wünschen übrig.
+Bei der Verschlüsselungs eines 50 Megapixel zu verschlüsseln, brauchten wir auf unseren
+Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
 \subsubsection{Wiedererkennbarkeit des Bildes}
+ Bei einigen Bildern konnte man beim verschlüsselten Bild noch Umrisse, Konturen oder grössere
+ Flächen wiedererkennen.
+ Somit wurden die Bilder nicht immer völlig verschleiert und teilweise waren sie wiedererkennbar.
+ \begin{figure}[H] 
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\textwidth]{img/asym-enc-result.jpg}}
+	\caption[RSA - Verschlüsselung]{RSA - Verschlüsselung}  
+	\label{asym-enc-result} 
+\end{figure}
+
+\subsubsection{Problem bei der RSA Verschlüsselung} \label{problems-RSA}
+\paragraph{Problem Weiss} \label{problem-white}
+Wie man in der Abbildung \ref{asym-enc-result} sieht, ist der grösste Teil
+der Bildes weiss.
+Grund dafür ist, dass wir mit JPG Bilder von 8-Bit arbeiteten.
+Mit einer Farbtiefe von 8-Bit kann man pro Farbe 255 verschiedene Werte darstellen.
+Da wir nun die RGB Werte von jedem Pixel verschlüsseln, kann es also für die einzelnen
+RGB Werte grössere Farbwerte als 255 geben, was eigentlich zu Farben führt,
+die ausserhalb des 8-Bit Spektrums liegen.
+Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese "`ungüligen"'
+RGB-Werte als Weiss. 
+Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick schient,
+sondern viele Werte liegen ausserhalb der 8-Bit Tiefe, welche dann weiss angezeigt werden.
+
+\paragraph{Problem Performance} Die Performance mit der RSA Verschlüsselung ist schlecht.
+Im Allgemeinen eignet sich die asymmetrische Verschlüsselung nicht bei grossen Dateien.
+Dies zeigten auch unsere Performance Tests.
+
+\paragraph{Problem Pixel für Pixel Verschlüsselung} 
+Jedes Pixel besteht aus drei Farben: Rot, Grün und Blau.
+Bei unseren Tests haben wir nur mit JPG Bildern mit einer Farbtiefe von 8-Bit gearbeitet.
+Das heisst dass wir für die Farben Rot, Grün, Blau je 255 verschiedene Mögliche Werte haben können.
+Unser asymmetrisches Verschlüsselungsverfahren iteriert durch jedes Pixel $P_n$ und verschlüsselt
+in Jedem Pixel die Farben.
+\begin{align}
+Original: &P_n(R,G,B) \\
+Encrypted: &P_n'(enc(R), enc(G), enc(B))
+\end{align}
+Durch das RSA Verschlüsselungsverfahren kann es dann aber für $enc(R|G|B)$ Werte geben die nicht mehr
+im 8-Bit Bereich sind (Problem oben beschrieben).
+Ein anderes Problem ist aber auch, dass der selbe RGB-Wert verschlüsselt auch immer den zum selben
+verschlüsselten Wert führt. Dies erklärt auch die hellblaue Fläche im verschlüsselten Bild 
+in der Abbildung \ref{asym-enc-result}
+
+\paragraph{Keine grossen Primzahlen}
+Wir wussten bereits im Vornhinein, dass wir für Matlab nur relativ kleine Primzahlen nutzen können.
+Mit einer Bruteforce Attacke könnte man also unsere mit Matlab asymmetrisch verschlüsselten Bilder
+in absehbarer Zeit "`entschlüsseln"'. 
+
  
- \subsection{Eignet sich nun Matlab für Bildverschlüsselung?} \label{problems-RSA}
- Probleme Notiz
+ \subsection{Eignet sich nun Matlab für Bildverschlüsselung?} 
+ Wir finden, dass sich die symmetrische Verschlüsselung mit dem One Time Pad
+ gut eignet, jedoch die asymmetrische Verschlüsselung mit RSA nicht.
+ 
  \begin{itemize}
-  \item wenn jedes Pixel mit dem gleichen Exponenten e gerechnet wird, so wird das Bild nicht wirklich verschlüsselt.
+  \item Bei der symmetrischen Verschlüsselung gelingt es sehr einfach, den KeyStream von der
+ grösse des Bildes zu erzeugen.
+ \item Die XOR Operation spürt kommt auch der Performance zugute. Bei einer Bildgrösse
+ von 50 Megapixel brauchten wir im Durchschnitt nicht einmal eine Zehntel Sekunde.
+ \item das verschlüsselte Bild in keiner Weise wiedererkennbar.   
 \end{itemize}
+Die asymmetrische Verschlüsselung mit RSA eignet sich hingegen weniger, um Bilder (in Matlab) zu verschlüsseln.
+ \begin{itemize}
+  \item Matlab kann nicht mit grossen Primzahlen umgehen. Dies wäre jedoch ein wesentlicher Sicherheitsfaktor in RSA.
+  \item Bei grossen Bildern ist die Performance sehr schlecht.
+  \item Das verschlüsselte Bild ist teilweise wiedererkennbar.
+\end{itemize}
+ 
+ 
+ 
 \newpage
 \section{Ahnang}
+\subsection{Code}
+\subsubsection{Symmetrische Verschlüsselung}
+\lstinputlisting[language=Matlab]{../matlab/matlab-enc.m}
+\lstinputlisting[language=Matlab]{../matlab/encData.m}
 
 \newpage
-\section{Literatur}
+\subsubsection{Asymmetrische Verschlüsselung}
+\lstinputlisting[language=Matlab]{../matlab/matlab-enc-assymetric.m}
+\lstinputlisting[language=Matlab]{../matlab/encDataRSA.m}
+
 \end{document}
