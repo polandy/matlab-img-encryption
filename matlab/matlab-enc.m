@@ -1,28 +1,32 @@
 % Declare image to load
-
 % files = dir('images/large-2.jpg');
+
+% Load all image files
 files = dir('images/*.jpg');
 
-% initialize matrixes for report
+% initialize matrixes for our csv report
 time = [];
 imgName = [];
 width = [];
 height = [];
 megapixel = [];
 
+% iterate all files
 for file = files'
     filename = file.name
 
-    % read image
+    % concat the image path
     imagePath = strcat('images/', filename);
     total_runtime = tic;
+    % load image
     my_image = imread(imagePath, 'jpg');
+    % get image dimensions
     my_image_size = size(my_image);
     y = my_image_size(1);
     x = my_image_size(2);
     z = my_image_size(3);
 
-    % generate random matrix
+    % generate random matrix for the one time pad
     randomMatrix = randi([0,255], y, x, z);
     randomMatrix = uint8(randomMatrix);
 
@@ -50,11 +54,11 @@ for file = files'
     title('Encrypted image')
     % subplot(1,3,3)
 
+	% activate next 2 lines to show the decrypted image
     %imshow(image_decrypted,[])
     %title('Decrypted Image')
-
 end
 
+% Create table for Report and save it to a csv file
 T = table(imgName,width, height,megapixel, time);
 writetable(T,'performance-symmetric-enc.csv');
-
