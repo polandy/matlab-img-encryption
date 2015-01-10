@@ -140,19 +140,19 @@ small-9.jpg,683,1024,0.699392,1.24491044303591
 \maketitle 
 
 \section{Einleitung}
-In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
+In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmen
 angewandt auf Bilder implementiert in Matlab. \\
 Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsverfahren gibt:
 \begin{itemize}
   \item Die symmetrische Verschlüsselung 
   \item Die asymmetrische Verschlüsselung 
 \end{itemize}
-Bei der symmetrisch Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
-Bei der asymmetrisch hingegen gibt es zwei verschiedene Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
+Bei der symmetrischen Verschlüsselung wird mit einem Schlüssel verschlüsselt und mit demselben auch wieder entschlüsselt.
+Bei der asymmetrischen Verchlüsselung hingegen gibt es zwei verschiedene Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
 und einen privaten Schlüssel zum entschlüsseln. \\ \\
-Es gibt verschiedene asymetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
-Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
-Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrische Verschlüsselung auf das \textit{One-Time-Pad} 
+Es gibt verschiedene asymmetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
+Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene, beispielsweise DES, AES, One-Time-Pad, \ldots \\
+Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrischen Verschlüsselung auf das \textit{One-Time-Pad} 
 und bei den asymmetrisch Verschlüsselungsverfahren auf RSA. \\ \\
 In dieser Arbeit haben wir festgestellt, dass sich Matlab nur bedingt eignet, um Bilder zu Verschlüsseln.
 Für die symmetrische Verschlüsselung stiessen wir auf keine grösseren Probleme. Bei der asymmetrischen Verschlüsselung
@@ -195,11 +195,11 @@ indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystre
 
 
 \subsection{Rivest, Shamir und Adleman (RSA)} \label{RSA-intro}
-RSA ist ein asymmetrisches kryptographisches Verfahren. Es wird zur Verschlüsselung aber auch zur digitalen Signatur verwendet.
+RSA ist ein asymmetrisches kryptographisches Verfahren. Es wird zur Verschlüsselung aber auch für digitalen Signaturen verwendet.
 In dieser Arbeit befassen wir uns ausschliesslich mit dem Verschlüsselungsverfahren von RSA.
 \\ \\
 RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (private key) und einem öffentlichen Schlüssel  (public key).
-Den private key verwendet man dabei um Daten zu entschlüsseln, die mit dem public key verschlüsselt worden sind. 
+Den private Schlüssel verwendet man dabei um Daten zu entschlüsseln, die mit dem öffentlichen Schlüssel verschlüsselt worden sind. 
 
 \subsubsection{Schlüssel Generierung}
 Der public key ist ein Zahlenpaar $(e,N)$, und der private key ist auch ein Zahlenpaar $(d,N)$.
@@ -265,7 +265,7 @@ machen zu können.
 \addplot table [x=time, y=megapixel, col sep=comma] {data.csv};
 \end{axis}
 \end{tikzpicture} \\
-Unserer Meinung ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
+Unserer Meinung nach ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
 Die obere Grafik zeigt, dass die Verschlüsselungsdauer wie erwartet linear zur Anzahl Bildpunkten ist.
 Um ein Bild von 50 Megapixel zu Verschlüsseln braucht unser Matlab Programm 0.06s.
 Die Verschlüsselungsdauer ist mit der Entschlüsselungsdauer identisch, da die gleichen Operationen (XOR) durchgeführt werden.
@@ -317,13 +317,13 @@ Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
 \paragraph{Problem Weiss} \label{problem-white}
 Wie man in der Abbildung \ref{asym-enc-result} sieht, ist der grösste Teil
 der Bildes weiss.
-Grund dafür ist, dass wir mit JPG Bilder von 8-Bit arbeiteten.
-Mit einer Farbtiefe von 8-Bit kann man pro Farbe 255 verschiedene Werte darstellen.
+Grund dafür ist, dass wir mit JPG Bildern von 8-Bit Farbtiefe arbeiteten.
+Mit einer Farbtiefe von 8-Bit kann man pro Farbe 256 verschiedene Werte darstellen.
 Da wir nun die RGB Werte von jedem Pixel verschlüsseln, kann es also für die einzelnen
 RGB Werte grössere Farbwerte als 255 geben, was eigentlich zu Farben führt,
 die ausserhalb des 8-Bit Spektrums liegen.
-Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese "`ungüligen"'
-RGB-Werte als Weiss. 
+Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese double 
+RGB-Werte nun als Weiss. 
 Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick schient,
 sondern viele Werte liegen ausserhalb der 8-Bit Tiefe, welche dann weiss angezeigt werden.
 
