@@ -7,21 +7,23 @@ width = [];
 height = [];
 megapixel = [];
 
-
+% iterate through all the files in images/ folder
 for file = files'
     filename = file.name
 
     % read image
     imagePath = strcat('images/', filename);
     total_runtime = tic;
+    % read image
     clean_image = imread(imagePath, 'jpg');
+    % get size
     my_image_size = size(clean_image);
     y = my_image_size(1);
     x = my_image_size(2);
     z = my_image_size(3);
 
-    % encrypt image
     enc_time = tic;
+    
     % generate a p and q which are not the same and where the result of the
     % multiplication is bigger or equal to 255
     n=0;
@@ -54,7 +56,7 @@ for file = files'
 
         enc_time = toc(enc_time);
     % decrypt image with RSA
-    % image_decrypted = decDataRSA(image_encrypted, d,n);
+    image_decrypted = decDataRSA(image_encrypted, d,n);
 
     % create statistics for the table
     time = cat(1, time, [enc_time]); % time in seconds
@@ -63,7 +65,6 @@ for file = files'
     megapixel = cat(1, megapixel, [(x*y)/10^6]);
     imgName = [imgName; {filename}];
 
-    %figure()
     % plot images
     figure()
     subplot(1,3,1);
@@ -74,10 +75,9 @@ for file = files'
     imshow(image_encrypted,[])
     title('Verschlüsselt mit RSA (asymmetrisch)')
 
-    %subplot(1,3,3);
-    %imshow(image_decrypted,[])
-    %title('Entschlüsselt')
-
+    subplot(1,3,3);
+    imshow(image_decrypted,[])
+    title('Entschlüsselt')
 end
 
 T = table(imgName,width, height,megapixel, time);
