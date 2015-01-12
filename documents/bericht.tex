@@ -30,7 +30,7 @@
   keywordstyle=\color{blue},       % keyword style
   language=Octave,                 % the language of the code
   morekeywords={*,...},            % if you want to add more keywords to the set
-  %numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   %numbersep=5pt,                   % how far the line-numbers are from the code
   % numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
   % rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
@@ -100,44 +100,62 @@ small-9.jpg,683,1024,0.699392,0.00102636324666992
 
 \begin{filecontents*}{performance-asymmetric-enc.csv}
 imgName,width,height,megapixel,time
-a.jpg,1536,1024,1.572864,0.750267797689702
-large-1.jpg,5184,3456,17.915904,48.3300696414079
-large-10.jpg,5184,3456,17.915904,115.412466811298
-large-2.jpg,5074,3383,17.165342,79.4360124620484
-large-4.jpg,5184,3456,17.915904,205.940519027878
-large-5.jpg,5184,3456,17.915904,189.149459128049
-large-6.jpg,5184,3456,17.915904,18.6510654472338
-large-7.jpg,11029,4695,51.781155,28.0440322907512
-large-8.jpg,5530,4142,22.90526,80.6949688588877
-large-9.jpg,3456,5184,17.915904,76.0953233697962
-medium-1.jpg,3000,2000,6,54.9303422487161
-medium-10.jpg,3000,2000,6,47.02039465021
-medium-2.jpg,3000,2000,6,59.1426434783908
-medium-3.jpg,4085,2000,8.17,3.81727045278589
-medium-4.jpg,3000,2000,6,38.8183215645549
-medium-5.jpg,3000,2000,6,34.1271336261442
-medium-6.jpg,3000,2000,6,26.0031729473436
-medium-7.jpg,4698,2000,9.396,36.4283156716049
-medium-8.jpg,2670,2000,5.34,19.6319595879978
-medium-9.jpg,1333,2000,2.666,29.3038758987683
-small-1.jpg,1536,1024,1.572864,2.50203404836328
-small-10.jpg,1536,1024,1.572864,13.2850189256153
-small-2.jpg,1536,1024,1.572864,0.3256433915375
-small-3.jpg,2091,1024,2.141184,22.4676966410185
-small-4.jpg,1536,1024,1.572864,12.8615002647625
-small-5.jpg,1536,1024,1.572864,5.75673603412868
-small-6.jpg,1536,1024,1.572864,11.8026622872678
-small-7.jpg,2405,1024,2.46272,23.761862246923
-small-8.jpg,1367,1024,1.399808,13.0273279720874
-small-9.jpg,683,1024,0.699392,1.24491044303591
+a.jpg,1536,1024,1.572864,2.76022765106889
+large-1.jpg,5184,3456,17.915904,116.136913308893
+large-10.jpg,5184,3456,17.915904,89.4094978200094
+large-2.jpg,5074,3383,17.165342,44.2005362538717
+large-4.jpg,5184,3456,17.915904,161.494887516968
+large-5.jpg,5184,3456,17.915904,118.943474340458
+large-6.jpg,5184,3456,17.915904,4.03735565763244
+large-7.jpg,11029,4695,51.781155,368.004891378706
+large-8.jpg,5530,4142,22.90526,3.99097091182303
+large-9.jpg,3456,5184,17.915904,21.3691685776898
+medium-1.jpg,3000,2000,6,1.53960242313531
+medium-10.jpg,3000,2000,6,4.49044488431831
+medium-2.jpg,3000,2000,6,2.92113276392549
+medium-3.jpg,4085,2000,8.17,44.8644539423578
+medium-4.jpg,3000,2000,6,23.7438710674599
+medium-5.jpg,3000,2000,6,35.2777331833466
+medium-6.jpg,3000,2000,6,5.08329352521547
+medium-7.jpg,4698,2000,9.396,80.8788735866951
+medium-8.jpg,2670,2000,5.34,69.5114117382816
+medium-9.jpg,1333,2000,2.666,16.7334546488644
+small-1.jpg,1536,1024,1.572864,3.20237186338881
+small-10.jpg,1536,1024,1.572864,1.4994557611569
+small-2.jpg,1536,1024,1.572864,13.1459755510447
+small-3.jpg,2091,1024,2.141184,13.1007502604455
+small-4.jpg,1536,1024,1.572864,15.2949816555788
+small-5.jpg,1536,1024,1.572864,11.3610780738755
+small-6.jpg,1536,1024,1.572864,1.66316448620911
+small-7.jpg,2405,1024,2.46272,10.3404488301083
+small-8.jpg,1367,1024,1.399808,0.429924871224825
+small-9.jpg,683,1024,0.699392,4.74592661390982
 \end{filecontents*}
 
 
 \begin{document}
-\title{Bildverschlüsselung mit Matlab}
-\author{Marco Berger, Andy Pollari}
-\date{14.01.2015}
-\maketitle 
+\thispagestyle{empty}
+\newcommand{\Rule}{\rule{\textwidth}{1mm}}
+\begin{center}
+\Rule\vspace{5mm}
+\sffamily\bfseries\Huge
+Bildverschlüsselung mit Matlab
+\vspace{1mm}\Rule
+\vfill
+\LARGE Bericht
+\vfill
+\Large Berger Marco \par
+\Large Pollari Andy \par
+\Large Programmierung in Matlab/Octave\par
+\vfill
+% \raisebox{7mm}{Universität}
+\includegraphics[height=16mm]{img/logo_bfh_de.jpg}
+% \raisebox{7mm}{Osnabrück}\par
+\vfill
+\today
+\end{center}
+\newpage
+
 
 \section{Einleitung}
 In dieser Arbeit befassen wir uns mit der Anwendung verschiedener Verschlüsselungsalgorithmus
@@ -150,7 +168,7 @@ Es ist zu erwähnen, dass es grundsätzlich zwei verschiedene Verschlüsselungsv
 Bei der symmetrisch Verschlüsselung wird mit einem Schlüssel ver- wie auch entschlüsselt.
 Bei der asymmetrisch hingegen gibt es zwei verschiedene Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
 und einen privaten Schlüssel zum entschlüsseln. \\ \\
-Es gibt verschiedene asymetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
+Es gibt verschiedene asymmetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
 Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
 Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrische Verschlüsselung auf das \textit{One-Time-Pad} 
 und bei den asymmetrisch Verschlüsselungsverfahren auf RSA. \\ \\
@@ -165,7 +183,7 @@ In dieser Arbeit beschränken wir uns auf folgende Verschlüsselungsverfahren:
   \item One Time Pad, als symmetrische Verschlüsselung
   \item Rivest, Shamir und Adleman (RSA), als asymmetrische Verschlüsselung.
 \end{itemize} 
-Daher beschränken wir uns auschliesslicht auf diese beiden Verfahren. 
+Daher beschränken wir uns ausschliesslich auf diese beiden Verfahren. 
 
 \subsection{One-Time-Pad}
 Beim One-Time-Pad haben wir einen Keystream der aus random Bits besteht.
@@ -198,13 +216,13 @@ indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystre
 RSA ist ein asymmetrisches kryptographisches Verfahren. Es wird zur Verschlüsselung aber auch zur digitalen Signatur verwendet.
 In dieser Arbeit befassen wir uns ausschliesslich mit dem Verschlüsselungsverfahren von RSA.
 \\ \\
-RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (private key) und einem öffentlichen Schlüssel  (public key).
-Den private key verwendet man dabei um Daten zu entschlüsseln, die mit dem public key verschlüsselt worden sind. 
+RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (Private Key) und einem öffentlichen Schlüssel  (Public Key).
+Den Private Key verwendet man dabei um Daten zu entschlüsseln, die mit dem Public Key verschlüsselt worden sind. 
 
 \subsubsection{Schlüssel Generierung}
-Der public key ist ein Zahlenpaar $(e,N)$, und der private key ist auch ein Zahlenpaar $(d,N)$.
-$e$ des public keys wird auch den Verschlüsselungsexponenten genannt.
-$d$ des private keys wird auch den Entschlüsselungsexponenten genannt. 
+Der Public Key ist ein Zahlenpaar $(e,N)$, und der Private Key ist auch ein Zahlenpaar $(d,N)$.
+$e$ des Public Keys wird auch den Verschlüsselungsexponenten genannt.
+$d$ des Private Keys wird auch den Entschlüsselungsexponenten genannt. 
 Bei beiden Zahlenpaaren ist N gleich und wird \textit{RSA Modul} genannt.
 Eine kurze grobe Beschreibung, wie die oben genannten Schlüssel generiert werden:
 \begin{itemize}
@@ -238,7 +256,7 @@ konnten wir uns schnell der Implementierung widmen.
 \subsection{Implementierung der symmetrischen Verschlüsselung}
 Wie bereits erwähnt haben wir uns für eine One Time Pad Verschlüsselung entschieden.
 Dabei wird ein Bild in eine Matrix $M_M$ gelesen. 
-Für das One Time Pad erstellen darauf hin eine Matrix $M_R$ mit Zufallswerten und exakt der Grösse, des eingelesenen Bildes.
+Für das One Time Pad erstellen daraufhin eine Matrix $M_R$ mit Zufallswerten und exakt der Grösse, des eingelesenen Bildes.
 Die beiden Matrizen werden XOR miteinander verknüpft, was eine neue Matrix $M_C$ ergibt und dem verschlüsselten Bild entspricht.
 Nachträglich haben wir die Zeitmessung eingebaut, um Auswertungen machen zu können.
 
@@ -265,9 +283,9 @@ machen zu können.
 \addplot table [x=time, y=megapixel, col sep=comma] {data.csv};
 \end{axis}
 \end{tikzpicture} \\
-Unserer Meinung ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
+Unserer Meinung ist die Performance bei der symmetrischen Verschlüsselung sehr akzeptabel.
 Die obere Grafik zeigt, dass die Verschlüsselungsdauer wie erwartet linear zur Anzahl Bildpunkten ist.
-Um ein Bild von 50 Megapixel zu Verschlüsseln braucht unser Matlab Programm 0.06s.
+Um ein Bild von 50 Megapixel zu verschlüsseln braucht unser Matlab Programm 0.06s.
 Die Verschlüsselungsdauer ist mit der Entschlüsselungsdauer identisch, da die gleichen Operationen (XOR) durchgeführt werden.
 Bezüglich der Performance eignet sich Matlab unserer Meinung sehr gut für eine symmetrische Verschlüsselung mit dem One-Time-Pad.
 
@@ -283,8 +301,9 @@ Die Abbildung \ref{sym-enc-result} zeigt ein Beispiel des Resultates.
 \end{figure}
 
 \subsubsection{Verschlüsseltes Bild Speichern und anzeigen}
-% TODO
-
+Das verschlüsselte Bild kann als valides JPG Bild abgespeichert werden und in einem
+gewöhnlichen Bildbetrachtungsprogramm interpretiert werden.
+ 
 \subsection{Asymmetrische Verschlüsselung}
 \subsubsection{Performance bei der asymmetrischen Verschlüsselung}
 \begin{tikzpicture}
@@ -297,7 +316,7 @@ Die Abbildung \ref{sym-enc-result} zeigt ein Beispiel des Resultates.
 \end{axis}
 \end{tikzpicture} \\
 Bei der asymmetrischen Verschlüsselung lässt die Performance zu wünschen übrig.
-Bei der Verschlüsselungs eines 50 Megapixel zu verschlüsseln, brauchten wir auf unseren
+Bei der Verschlüsselung eines 50 Megapixel zu verschlüsseln, brauchten wir auf unseren
 Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
 \subsubsection{Wiedererkennbarkeit des Bildes}
  Bei einigen Bildern konnte man beim verschlüsselten Bild noch Umrisse, Konturen oder grössere
@@ -310,26 +329,37 @@ Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
 	\label{asym-enc-result} 
 \end{figure}
 
-\subsubsection{Verschlüsseltes Bild Speichern und anzeigen}
-% TODO
 
 \subsubsection{Problem bei der RSA Verschlüsselung} \label{problems-RSA}
-\paragraph{Problem Weiss} \label{problem-white}
+\paragraph{Ungültiges Bild} \label{problem-white}
 Wie man in der Abbildung \ref{asym-enc-result} sieht, ist der grösste Teil
-der Bildes weiss.
+des Bildes weiss.
 Grund dafür ist, dass wir mit JPG Bilder von 8-Bit arbeiteten.
 Mit einer Farbtiefe von 8-Bit kann man pro Farbe 255 verschiedene Werte darstellen.
 Da wir nun die RGB Werte von jedem Pixel verschlüsseln, kann es also für die einzelnen
 RGB Werte grössere Farbwerte als 255 geben, was eigentlich zu Farben führt,
 die ausserhalb des 8-Bit Spektrums liegen.
-Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese "`ungüligen"'
+Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese "`ungültigen"'
 RGB-Werte als Weiss. 
-Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick schient,
-sondern viele Werte liegen ausserhalb der 8-Bit Tiefe, welche dann weiss angezeigt werden.
+Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick scheint,
+sondern viele Werte liegen ausserhalb der 8-Bit Farbtiefe.
+Somit entstehen neu double-Werte die Matlab dennoch als Bild darstellen kann. Werte die nun 
+ausserhalb der 8-Bit Farbtiefen liegen, werden als weiss interpretiert.
+Matlab kann nun mit der RSA Modulo-Operation das Ausgangsbild wieder korrekt zurückrechnen. 
+Allerdings ist es nicht möglich, dieses Bild direkt interpretierbar abzuspeichern 
+(jedenfalls ohne zusätzliche mapping Operationen).
+
+Es wäre möglich, mit Bilder von einer höheren Farbtiefe zu arbeiten wie bspw. 16-Bit Bildern.
+Das oben genannte Problem wäre somit immer noch bestehend, einfach erst mit grösseren Zahlen.
+
 
 \paragraph{Problem Performance} Die Performance mit der RSA Verschlüsselung ist schlecht.
 Im Allgemeinen eignet sich die asymmetrische Verschlüsselung nicht bei grossen Dateien.
-Dies zeigten auch unsere Performance Tests.
+Üblicherweise wird ein hybrides Verschlüsselungsverfahren verwendet indem
+ein symmetrischer Schlüssel asymmetrisch verschlüsselt wird.
+Auch unsere Performance Tests zeigten, dass die Performance bei der RSA-Verschlüsselung
+sehr schlecht ist (rund 1000x langsamer) im Vergleich zu der symmetrischen Verschlüsselung.
+
 
 \paragraph{Problem Pixel für Pixel Verschlüsselung} 
 Jedes Pixel besteht aus drei Farben: Rot, Grün und Blau.
@@ -350,26 +380,7 @@ in der Abbildung \ref{asym-enc-result}
 \paragraph{Keine grossen Primzahlen}
 Wir wussten bereits im Vornhinein, dass wir für Matlab nur relativ kleine Primzahlen nutzen können.
 Mit einer Bruteforce Attacke könnte man also unsere mit Matlab asymmetrisch verschlüsselten Bilder
-in absehbarer Zeit "`entschlüsseln"'. 
- 
- 
-%  \subsection{Eignet sich nun Matlab für Bildverschlüsselung?} 
-%  Wir finden, dass sich die symmetrische Verschlüsselung mit dem One Time Pad
-%  gut eignet, jedoch die asymmetrische Verschlüsselung mit RSA nicht.
-%  \begin{itemize}
-%   \item Bei der symmetrischen Verschlüsselung gelingt es sehr einfach, den KeyStream von der
-%  grösse des Bildes zu erzeugen.
-%  \item Die XOR Operation spürt kommt auch der Performance zugute. Bei einer Bildgrösse
-%  von 50 Megapixel brauchten wir im Durchschnitt nicht einmal eine Zehntel Sekunde.
-%  \item das verschlüsselte Bild in keiner Weise wiedererkennbar.   
-% \end{itemize}
-% Die asymmetrische Verschlüsselung mit RSA eignet sich hingegen weniger, um Bilder (in Matlab) zu verschlüsseln.
-%  \begin{itemize}
-%   \item Matlab kann nicht mit grossen Primzahlen umgehen. Dies wäre jedoch ein wesentlicher Sicherheitsfaktor in RSA.
-%   \item Bei grossen Bildern ist die Performance sehr schlecht.
-%   \item Das verschlüsselte Bild ist teilweise wiedererkennbar.
-% \end{itemize}
- 
+in absehbarer Zeit "`entschlüsseln"'.
  
  
 \newpage
