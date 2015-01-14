@@ -319,6 +319,7 @@ gewöhnlichen Bildbetrachtungsprogramm interpretiert werden.
 Bei der asymmetrischen Verschlüsselung lässt die Performance zu wünschen übrig.
 Bei der Verschlüsselung eines 50 Megapixel zu verschlüsseln, brauchten wir auf unseren
 Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
+Dies ist über 5000x langsamer als bei unserer symetrischen Verschlüsselung.
 \subsubsection{Wiedererkennbarkeit des Bildes}
  Bei einigen Bildern konnte man beim verschlüsselten Bild noch Umrisse, Konturen oder grössere
  Flächen wiedererkennen.
@@ -337,7 +338,6 @@ Wie man in der Abbildung \ref{asym-enc-result} sieht, ist der grösste Teil
 des Bildes weiss.
 Grund dafür ist, dass wir mit JPG Bilder von 8-Bit arbeiteten.
 Mit einer Farbtiefe von 8-Bit kann man pro Farbe 255 verschiedene Werte darstellen.
-der Bildes weiss.
 Grund dafür ist, dass wir mit JPG Bildern von 8-Bit Farbtiefe arbeiteten.
 Mit einer Farbtiefe von 8-Bit kann man pro Farbe 256 verschiedene Werte darstellen.
 
@@ -354,7 +354,6 @@ ausserhalb der 8-Bit Farbtiefen liegen, werden als weiss interpretiert.
 Matlab kann nun mit der RSA Modulo-Operation das Ausgangsbild wieder korrekt zurückrechnen. 
 Allerdings ist es nicht möglich, dieses Bild direkt interpretierbar abzuspeichern 
 (jedenfalls ohne zusätzliche mapping Operationen). 
-
 Es wäre möglich, mit Bilder von einer höheren Farbtiefe zu arbeiten wie bspw. 16-Bit Bildern.
 Das oben genannte Problem wäre somit immer noch bestehend, einfach erst mit grösseren Zahlen.
 
