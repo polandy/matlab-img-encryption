@@ -169,13 +169,8 @@ Bei der symmetrischen Verschlüsselung wird mit einem Schlüssel verschlüsselt 
 Bei der asymmetrischen Verchlüsselung hingegen gibt es zwei verschiedene Schlüssel: Einen öffentlichen Schlüssel zum verschlüsseln
 und einen privaten Schlüssel zum entschlüsseln. \\ \\
 Es gibt verschiedene asymmetrische Verschlüsselungsverfahren wie RSA, Merkle-Hellmann, RSA, \ldots \\
-<<<<<<< HEAD
 Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene wie DES, AES, One-Time-Pad, \ldots \\
 Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrische Verschlüsselung auf das \textit{One-Time-Pad} 
-=======
-Auch bei den symetrischen Verschlüsselungsverfahren gibt es verschiedene, beispielsweise DES, AES, One-Time-Pad, \ldots \\
-Im Rahmen dieser Arbeit konzentrieren wir uns bei der symmetrischen Verschlüsselung auf das \textit{One-Time-Pad} 
->>>>>>> branch 'master' of https://github.com/polandy/matlab-img-encryption.git
 und bei den asymmetrisch Verschlüsselungsverfahren auf RSA. \\ \\
 In dieser Arbeit haben wir festgestellt, dass sich Matlab nur bedingt eignet, um Bilder zu Verschlüsseln.
 Für die symmetrische Verschlüsselung stiessen wir auf keine grösseren Probleme. Bei der asymmetrischen Verschlüsselung
@@ -221,13 +216,8 @@ indem das Bit an der Position $i$ des Bildes $m$ mit dem $i$-ten Bit des Keystre
 RSA ist ein asymmetrisches kryptographisches Verfahren. Es wird zur Verschlüsselung aber auch für digitalen Signaturen verwendet.
 In dieser Arbeit befassen wir uns ausschliesslich mit dem Verschlüsselungsverfahren von RSA.
 \\ \\
-<<<<<<< HEAD
 RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (Private Key) und einem öffentlichen Schlüssel  (Public Key).
 Den Private Key verwendet man dabei um Daten zu entschlüsseln, die mit dem Public Key verschlüsselt worden sind. 
-=======
-RSA verwendet ein Schlüsselpaar bestehend aus einen privaten Schlüssel (private key) und einem öffentlichen Schlüssel  (public key).
-Den private Schlüssel verwendet man dabei um Daten zu entschlüsseln, die mit dem öffentlichen Schlüssel verschlüsselt worden sind. 
->>>>>>> branch 'master' of https://github.com/polandy/matlab-img-encryption.git
 
 \subsubsection{Schlüssel Generierung}
 Der Public Key ist ein Zahlenpaar $(e,N)$, und der Private Key ist auch ein Zahlenpaar $(d,N)$.
@@ -293,11 +283,7 @@ machen zu können.
 \addplot table [x=time, y=megapixel, col sep=comma] {data.csv};
 \end{axis}
 \end{tikzpicture} \\
-<<<<<<< HEAD
-Unserer Meinung ist die Performance bei der symmetrischen Verschlüsselung sehr akzeptabel.
-=======
 Unserer Meinung nach ist die Performance bei der symmetrischer Verschlüsselung sehr akzeptabel.
->>>>>>> branch 'master' of https://github.com/polandy/matlab-img-encryption.git
 Die obere Grafik zeigt, dass die Verschlüsselungsdauer wie erwartet linear zur Anzahl Bildpunkten ist.
 Um ein Bild von 50 Megapixel zu verschlüsseln braucht unser Matlab Programm 0.06s.
 Die Verschlüsselungsdauer ist mit der Entschlüsselungsdauer identisch, da die gleichen Operationen (XOR) durchgeführt werden.
@@ -318,17 +304,18 @@ Die Abbildung \ref{sym-enc-result} zeigt ein Beispiel des Resultates.
 Das verschlüsselte Bild kann als valides JPG Bild abgespeichert werden und in einem
 gewöhnlichen Bildbetrachtungsprogramm interpretiert werden.
  
+\newpage
 \subsection{Asymmetrische Verschlüsselung}
 \subsubsection{Performance bei der asymmetrischen Verschlüsselung}
-\begin{tikzpicture}
-\begin{axis}[width=\textwidth, height=0.6\textwidth,
-		title={Performance - Symmetrische Verschlüsselung},
-		ylabel={Megapixel},
-		xlabel={Sekunden}
-		]
-\addplot table [x=time, y=megapixel, col sep=comma] {performance-asymmetric-enc.csv};
-\end{axis}
-\end{tikzpicture} \\
+% \begin{tikzpicture}
+% \begin{axis}[width=\textwidth, height=0.6\textwidth,
+% 		title={Performance - Symmetrische Verschlüsselung},
+% 		ylabel={Megapixel},
+% 		xlabel={Sekunden}
+% 		]
+% \addplot table [x=time, y=megapixel, col sep=comma] {performance-asymmetric-enc.csv};
+% \end{axis}
+% \end{tikzpicture} \\
 Bei der asymmetrischen Verschlüsselung lässt die Performance zu wünschen übrig.
 Bei der Verschlüsselung eines 50 Megapixel zu verschlüsseln, brauchten wir auf unseren
 Workstations durchschnittlich 337 Sekunden, also ~5.6 Minuten.
@@ -358,10 +345,10 @@ Da wir nun die RGB Werte von jedem Pixel verschlüsseln, kann es also für die e
 RGB Werte grössere Farbwerte als 255 geben, was eigentlich zu Farben führt,
 die ausserhalb des 8-Bit Spektrums liegen.
 
-Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese "`ungültigen"'
-RGB-Werte als Weiss. 
-Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick scheint,
-sondern viele Werte liegen ausserhalb der 8-Bit Farbtiefe.
+Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese double 
+RGB-Werte nun als Weiss. 
+Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick schient,
+sondern viele Werte liegen ausserhalb der 8-Bit Tiefe, welche dann weiss angezeigt werden.
 Somit entstehen neu double-Werte die Matlab dennoch als Bild darstellen kann. Werte die nun 
 ausserhalb der 8-Bit Farbtiefen liegen, werden als weiss interpretiert.
 Matlab kann nun mit der RSA Modulo-Operation das Ausgangsbild wieder korrekt zurückrechnen. 
@@ -371,10 +358,6 @@ Allerdings ist es nicht möglich, dieses Bild direkt interpretierbar abzuspeiche
 Es wäre möglich, mit Bilder von einer höheren Farbtiefe zu arbeiten wie bspw. 16-Bit Bildern.
 Das oben genannte Problem wäre somit immer noch bestehend, einfach erst mit grösseren Zahlen.
 
-Der Bildbetrachter von Abbildung \ref{sym-enc-result} interpretiert diese double 
-RGB-Werte nun als Weiss. 
-Es gehen also nicht Informationen verloren, wie es vielleicht auf den ersten Blick schient,
-sondern viele Werte liegen ausserhalb der 8-Bit Tiefe, welche dann weiss angezeigt werden.
 
 \paragraph{Problem Performance} Die Performance mit der RSA Verschlüsselung ist schlecht.
 Im Allgemeinen eignet sich die asymmetrische Verschlüsselung nicht bei grossen Dateien.
